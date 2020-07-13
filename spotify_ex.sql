@@ -2,10 +2,10 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 13, 2020 at 02:41 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 13 juil. 2020 à 20:15
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spotify_ex`
+-- Base de données :  `spotify_ex`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artists`
+-- Structure de la table `artists`
 --
 
 DROP TABLE IF EXISTS `artists`;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `artists`
+-- Déchargement des données de la table `artists`
 --
 
 INSERT INTO `artists` (`artist_id`, `name`, `bio`, `gender`, `date_of_birth`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `artists` (`artist_id`, `name`, `bio`, `gender`, `date_of_birth`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Structure de la table `categories`
 --
 
 DROP TABLE IF EXISTS `categories`;
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `categories`
+-- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`categ_id`, `title`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `categories` (`categ_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlists`
+-- Structure de la table `playlists`
 --
 
 DROP TABLE IF EXISTS `playlists`;
@@ -84,20 +84,21 @@ CREATE TABLE IF NOT EXISTS `playlists` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`playlist_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `playlists`
+-- Déchargement des données de la table `playlists`
 --
 
 INSERT INTO `playlists` (`playlist_id`, `title`, `creation_date`, `user_id`) VALUES
-(4, 'myFirstPL', '2020-07-13', 2),
-(5, 'mySecondtPL', '2020-07-13', 2);
+(10, 'MyPlaylist', '2020-07-13', 2),
+(11, 'test2', '2020-07-13', 2),
+(12, 'mePlayList', '2020-07-13', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist_content`
+-- Structure de la table `playlist_content`
 --
 
 DROP TABLE IF EXISTS `playlist_content`;
@@ -108,10 +109,30 @@ CREATE TABLE IF NOT EXISTS `playlist_content` (
   KEY `song_id` (`song_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `playlist_content`
+--
+
+INSERT INTO `playlist_content` (`playlist_id`, `song_id`) VALUES
+(10, 13),
+(10, 5),
+(10, 6),
+(10, 11),
+(10, 2),
+(11, 3),
+(11, 4),
+(11, 7),
+(10, 13),
+(10, 8),
+(10, 9),
+(10, 10),
+(12, 13),
+(12, 14);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `songs`
+-- Structure de la table `songs`
 --
 
 DROP TABLE IF EXISTS `songs`;
@@ -127,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `songs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `songs`
+-- Déchargement des données de la table `songs`
 --
 
 INSERT INTO `songs` (`song_id`, `title`, `release_date`, `categ_id`, `artist_id`) VALUES
@@ -150,7 +171,7 @@ INSERT INTO `songs` (`song_id`, `title`, `release_date`, `categ_id`, `artist_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -161,34 +182,35 @@ CREATE TABLE IF NOT EXISTS `users` (
   `mail` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `mail`, `password`) VALUES
-(2, 'Matthieu', 'BarbiÃ©', 'matthieu.barbie@gmail.com', '$2y$10$xIcapaF2t0hKvub1hM082u2FJfVuxlbDP.434RwXR4WwFBzzkdImO');
+(2, 'Matthieu', 'BarbiÃ©', 'matthieu.barbie@gmail.com', '$2y$10$xIcapaF2t0hKvub1hM082u2FJfVuxlbDP.434RwXR4WwFBzzkdImO'),
+(3, 'me', 'me', 'me@me.com', '$2y$10$5ygsWJLnEsy/SSeNwNiPquI.NpiDmoB.6FE/dZomsNDO2w7knn0uG');
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `playlists`
+-- Contraintes pour la table `playlists`
 --
 ALTER TABLE `playlists`
   ADD CONSTRAINT `playlists_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `playlist_content`
+-- Contraintes pour la table `playlist_content`
 --
 ALTER TABLE `playlist_content`
   ADD CONSTRAINT `playlist_content_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`playlist_id`),
   ADD CONSTRAINT `playlist_content_ibfk_2` FOREIGN KEY (`song_id`) REFERENCES `songs` (`song_id`);
 
 --
--- Constraints for table `songs`
+-- Contraintes pour la table `songs`
 --
 ALTER TABLE `songs`
   ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`categ_id`) REFERENCES `categories` (`categ_id`),
