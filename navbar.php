@@ -18,19 +18,19 @@ $account = '';
         }else{
             echo '';
         }
-    ?>
-    <?php
-        if (!isset($_SESSION['idUser'])) {
-            echo '<a href="login.php">Login</a><span> | </span>';
-        }else{
-            echo '<a href="logout.php">Logout</a><span> | </span>';
-        }
-    ?>
+        ?>
     <?php
         if (isset($_SESSION['idUser'])) {
-            $account = '<a href="account.php">Account</a>';
+            $account = '<a href="account.php">Account</a><span> | </span>';
         }
         echo $account;
+        ?>
+    <?php
+        if (!isset($_SESSION['idUser'])) {
+            echo '<a href="login.php">Login</a>';
+        }else{
+            echo '<a href="logout.php">Logout</a>';
+        }
     ?>
     
 </nav>
