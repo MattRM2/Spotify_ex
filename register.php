@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //* DECLARE VAR
 $error = array('first_name'=>'','last_name'=>'','email'=>'','password'=>'');
@@ -55,7 +56,7 @@ if (isset($_POST['register'])) {
     //* SEND THE DATAS
     if (empty($error['first_name']) && empty($error['last_name']) && empty($error['email']) && empty($error['password'])) {
         include_once('database.php');
-        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, 'spotify_ex', '3306');
+        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
 
         //TODO Make sure email is not already taken
         $checkQuery = "SELECT * FROM users WHERE mail='$email'";
@@ -91,7 +92,7 @@ if (isset($_POST['register'])) {
 <body>
     <form method="POST">
         <?php
-            include_once 'navbar.html'
+            include_once 'navbar.php'
         ?>
         <br>
         <input type="text" name="first_name" placeholder="First name" value="<?= $first_nameVal?>"><span style="font-weight:red;color:red"><?= $error['first_name']?></span><br>

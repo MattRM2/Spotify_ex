@@ -1,6 +1,4 @@
 <?php
-
-//* TOUJOURS EN HAUT
 session_start();
 
 //* DECLARE VAR
@@ -42,7 +40,7 @@ if (isset($_POST['login'])) {
     //* ASK THE DATAS
     if (empty($error['email']) && empty($error['password'])) {
         include_once('database.php');
-        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, 'spotify_ex', '3306');
+        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
         if ($conn) {
             $query = "SELECT * FROM users";
             $sendRequest = mysqli_query($conn, $query);
@@ -61,13 +59,13 @@ if (isset($_POST['login'])) {
         }
         if ($logOk) {
             $msg = "You're logged !!!!";
-            $idUserKey = $email.'-logged';
+            $idUserKey = $email.'-'.$user['user_id'];
             if (!isset($_SESSION['idUser'])) {
                 $_SESSION['idUser'] = $idUserKey;
                 $emailVal = '';
                 $msg = "You are logged";
-                // header("location: account.php");
-                // exit();
+                header("location: account.php");
+                exit();
             }
         }else{
             $msg = "Login Failed, check your informations";
@@ -86,7 +84,7 @@ if (isset($_POST['login'])) {
 </head>
 <body>
     <?php
-        include_once 'navbar.html'
+        include_once 'navbar.php'
     ?>
     <form method="POST">
         <input type="email" name="email" placeholder="email" value="<?= $emailVal?>"><span style="font-weight:bold;color:red"><?= $error['email']?></span><br>

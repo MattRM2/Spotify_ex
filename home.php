@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-        include_once 'navbar.html';
+        include_once 'navbar.php';
     ?>
     <h1>Spotify Exercice</h1>
     <h2>Our site is the best</h2>
