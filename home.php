@@ -15,6 +15,6 @@ session_start();
     ?>
     <h1>Spotify Exercice</h1>
     <h2>Our site is the best</h2>
-    <p>Our site is the best for music</p>
+    <p>Our site is the best for music and that's all because no more ideas !!!</p>
 </body>
 </html>
