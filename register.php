@@ -99,7 +99,7 @@ if (isset($_POST['register'])) {
         <input type="email" name="email" placeholder="email" value="<?= $emailVal?>"><span style="font-weight:red;color:red"><?= $error['email']?></span><br>
         <input type="password" name="password" placeholder="Your password"><span style="font-weight:red;color:red"><?= $error['password']?></span><br>
         <input type="submit" name="register" value="Register"><br>
-        <?= $msg?>
     </form>
+        <?= $msg?>
 </body>
 </html>
