@@ -15,6 +15,11 @@ if ($conn) {
     }
     $sendRequest = mysqli_query($conn, $query);
     $songsList = mysqli_fetch_all($sendRequest, MYSQLI_ASSOC);
+
+    $query = "SELECT * FROM playlists";
+    $sendRequest = mysqli_query($conn, $query);
+    $myPlaylist = mysqli_fetch_all($sendRequest, MYSQLI_ASSOC);
+
     mysqli_close($conn);
 }else{
     $msg = "Connection to the server failed, contact us if the problem persist";
@@ -43,10 +48,19 @@ if ($conn) {
         </select>
         <input type="submit" name="sort" value="Sort By">
     </form>
+    <hr>
     <?php foreach($songsList as $song) : ?>
-        <h2><?= $song['title']?></h2>
+        <form method="POST">
+            <span style="font-size:1.5rem;font-weight:bold"><?= $song['title']?>
+            <select name="select" id="">
+                <?php foreach($myPlaylist as $currentPlaylist) :?>
+                    <option value="<?= $currentPlaylist['title']?>"><?= $currentPlaylist['title']?></option>
+                <?php endforeach;?>
+            </select>
+            <input type="submit" name="add2Pl" value="Add"></span>
+        </form><br>
         <span>Artist  : <?= $song['name']?></span><br>
-        <span>Released date  : <?= $song['release_date']?></span><br>
+        <span>Released date  : <?= $song['release_date']?></span><br><br>
     <?php endforeach;?>
 
 </body>
