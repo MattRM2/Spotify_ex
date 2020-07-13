@@ -5,7 +5,7 @@ include_once('database.php');
 $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
 $conn->set_charset("utf8");
 
-if ($conn) {
+if ($conn && !empty((isset($_SESSION['idUser'])))) {
     $query = "";
     // $sendRequest = mysqli_query($conn, $query);
     // $user = mysqli_fetch_assoc($sendRequest);
@@ -31,6 +31,17 @@ if ($conn) {
         include_once 'navbar.php'
     ?>
     <h1>Playlist</h1>
+
+    <h2>Create playlist</h2>
+    <form method="POST">
+        <input type="text" name="playlistName" placeholder="Playlist name">
+        <input type="submit" name="add" value="Add">
+    </form>
+    <h2>Your Playlists</h2>
+    <ul>
+        <?php //foreach() :?>
+        <? //endforeach; ?>
+    </ul>
 
 </body>
 </html>
