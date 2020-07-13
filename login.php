@@ -13,15 +13,6 @@ if (isset($_POST['register'])) {
     exit();
 }
 
-if (isset($_POST['logout'])) {
-    if (!empty($_SESSION['idUser'])) {
-        unset($_SESSION['idUser']);
-        $msg = "You're logout";
-        // header("location: login.php");
-        // exit();
-    }
-}
-
 if (isset($_POST['login'])) {
     if (!empty($_POST['email'])) {
         $email = $_POST['email'];
@@ -90,7 +81,6 @@ if (isset($_POST['login'])) {
         <input type="email" name="email" placeholder="email" value="<?= $emailVal?>"><span style="font-weight:bold;color:red"><?= $error['email']?></span><br>
         <input type="password" name="password" placeholder="password"><span style="font-weight:bold;color:red"><?= $error['password']?></span><br>
         <input type="submit" name="login" value="Login">
-        <input type="submit" name="logout" value="Logout">
     </form>
     <?= $msg?>
 </body>

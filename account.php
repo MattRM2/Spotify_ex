@@ -9,7 +9,7 @@ $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
 
 if ($conn && !empty((isset($_SESSION['idUser'])))) {
     $id = explode('-', $_SESSION['idUser']);
-    $id = $id[1];
+    $id = $id[1]; //? [0] = email, [1] = user_id
     $query = "SELECT * FROM users WHERE user_id=$id";
     $sendRequest = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($sendRequest);

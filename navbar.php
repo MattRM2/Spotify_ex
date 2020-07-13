@@ -8,15 +8,27 @@ $account = '';
     <a href="">Artists</a><span> | </span>
     <?php
         if (isset($_SESSION['idUser'])) {
-            $playlist = '<a href="playlist.php">Playlist</a><span> | </span>';
+            $playlist = '<a href="">Playlist</a><span> | </span>';
         }
         echo $playlist;
     ?>
-    <a href="register.php">Register</a><span> | </span>
-    <a href="login.php">Login</a>
+    <?php
+        if (!isset($_SESSION['idUser'])) {
+            echo '<a href="register.php">Register</a><span> | </span>';
+        }else{
+            echo '';
+        }
+    ?>
+    <?php
+        if (!isset($_SESSION['idUser'])) {
+            echo '<a href="login.php">Login</a><span> | </span>';
+        }else{
+            echo '<a href="logout.php">Logout</a><span> | </span>';
+        }
+    ?>
     <?php
         if (isset($_SESSION['idUser'])) {
-            $account = '<span> | </span><a href="account.php">Account</a>';
+            $account = '<a href="account.php">Account</a>';
         }
         echo $account;
     ?>
