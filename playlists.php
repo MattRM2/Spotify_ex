@@ -6,10 +6,16 @@ $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
 $conn->set_charset("utf8");
 
 if ($conn && !empty((isset($_SESSION['idUser'])))) {
-    $query = "";
-    // $sendRequest = mysqli_query($conn, $query);
-    // $user = mysqli_fetch_assoc($sendRequest);
-    // mysqli_close($conn);
+    if (isset($_POST['add'])) {
+        $playlistName = $_POST['playlistName'];
+        $creationDate = date('U');
+        $id = explode('-', $_SESSION['idUser']);
+        $id = $id[1]; //? [0] = email, [1] = user_id
+
+        $query = "INSERT INTO playlists (title, creation_date, user_id) VALUE ('$playlistName', '$creationDate', '$id')";
+        $sendRequest = mysqli_query($conn, $query);
+        mysqli_close($conn);
+    }
 }elseif(empty((isset($_SESSION['idUser'])))){
     header("location: login.php");
     exit();
