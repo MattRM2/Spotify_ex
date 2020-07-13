@@ -11,6 +11,8 @@ if ($conn) {
     $sendRequest = mysqli_query($conn, $query);
     $artists = mysqli_fetch_all($sendRequest, MYSQLI_ASSOC);
     // var_dump($artists);
+}else{
+    $msg = "Connection to the server failed, contact us if the problem persist";
 }
 mysqli_close($conn);
 ?>

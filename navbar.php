@@ -8,7 +8,7 @@ $account = '';
     <a href="artists.php">Artists</a><span> | </span>
     <?php
         if (isset($_SESSION['idUser'])) {
-            $playlist = '<a href="">Playlist</a><span> | </span>';
+            $playlist = '<a href="playlists.php">Playlist</a><span> | </span>';
         }
         echo $playlist;
     ?>

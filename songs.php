@@ -11,11 +11,13 @@ if ($conn) {
     if (isset($_POST['sort'])) {
         $selectedVal = $_POST['select'];
         $query = "SELECT title, release_date, name FROM songs INNER JOIN artists ON songs.artist_id=artists.artist_id ORDER BY $selectedVal";
+        //TODO KEEP LAST SELECTED CHOICES
     }
     $sendRequest = mysqli_query($conn, $query);
     $songsList = mysqli_fetch_all($sendRequest, MYSQLI_ASSOC);
     mysqli_close($conn);
-
+}else{
+    $msg = "Connection to the server failed, contact us if the problem persist";
 }
 
 
@@ -28,6 +30,9 @@ if ($conn) {
     <title>Spotify Exercice Songs</title>
 </head>
 <body>
+    <?php
+        include_once 'navbar.php'
+    ?>
     <h1>Songs</h1>
     <h2>List of songs</h2>
     <form name="list" method="POST">

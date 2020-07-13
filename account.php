@@ -14,6 +14,9 @@ if ($conn && !empty((isset($_SESSION['idUser'])))) {
     $sendRequest = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($sendRequest);
     mysqli_close($conn);
+}elseif(empty((isset($_SESSION['idUser'])))){
+    header("location: login.php");
+    exit();
 }else{
     $msg = "Connection to the server failed, contact us if the problem persist";
 }
