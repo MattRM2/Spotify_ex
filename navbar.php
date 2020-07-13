@@ -5,7 +5,7 @@ $account = '';
 <nav>
     <a href="home.php">Home</a><span> | </span>
     <a href="">Songs</a><span> | </span>
-    <a href="">Artists</a><span> | </span>
+    <a href="artists.php">Artists</a><span> | </span>
     <?php
         if (isset($_SESSION['idUser'])) {
             $playlist = '<a href="">Playlist</a><span> | </span>';
