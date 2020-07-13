@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 juil. 2020 à 20:15
+-- Généré le :  lun. 13 juil. 2020 à 21:16
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -127,7 +127,9 @@ INSERT INTO `playlist_content` (`playlist_id`, `song_id`) VALUES
 (10, 9),
 (10, 10),
 (12, 13),
-(12, 14);
+(12, 14),
+(12, 10),
+(11, 8);
 
 -- --------------------------------------------------------
 
