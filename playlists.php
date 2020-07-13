@@ -3,19 +3,24 @@ session_start();
 
 include_once('database.php');
 $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATA, DB_PORT);
-$conn->set_charset("utf8");
+// $conn->set_charset("utf8");
 
 if ($conn && !empty((isset($_SESSION['idUser'])))) {
     if (isset($_POST['add'])) {
         $playlistName = $_POST['playlistName'];
-        $creationDate = date('U');
+        $creationDate = date('Y-m-d', date('U'));
         $id = explode('-', $_SESSION['idUser']);
         $id = $id[1]; //? [0] = email, [1] = user_id
 
         $query = "INSERT INTO playlists (title, creation_date, user_id) VALUE ('$playlistName', '$creationDate', '$id')";
         $sendRequest = mysqli_query($conn, $query);
-        mysqli_close($conn);
+
     }
+    $query = "SELECT * FROM playlists";
+    $sendRequest = mysqli_query($conn, $query);
+    $myPlaylist = mysqli_fetch_all($sendRequest, MYSQLI_ASSOC);
+    mysqli_close($conn);
+
 }elseif(empty((isset($_SESSION['idUser'])))){
     header("location: login.php");
     exit();
@@ -45,8 +50,9 @@ if ($conn && !empty((isset($_SESSION['idUser'])))) {
     </form>
     <h2>Your Playlists</h2>
     <ul>
-        <?php //foreach() :?>
-        <? //endforeach; ?>
+        <?php foreach($myPlaylist as $currentPlaylist) :?>
+            <li><?= $currentPlaylist['title']?></li>
+        <?php endforeach; ?>
     </ul>
 
 </body>
